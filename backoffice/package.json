@@ -58,8 +58,8 @@
     "@svgr/webpack": "$@svgr/webpack"
   },
   "engines": {
-    "node": "16.17.x",
-    "npm": "8.15.x"
+    "node": "20.19.x",
+    "npm": "10.8.x"
   },
   "eslintConfig": {
     "plugins": [
@@ -93,7 +93,7 @@
     "@svgr/webpack": "^6.3.1",
     "@types/uuid": "^8.3.1",
     "enhanced-resolve": "^5.9.0",
-    "express": "^4.21.2",
+    "express": "^5.1.0",
     "sass": "^1.54.5"
   },
   "proxy": "http://localhost:3005"
