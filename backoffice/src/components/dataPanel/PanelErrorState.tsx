@@ -1,9 +1,10 @@
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { Box, Button, Typography } from "@mui/material";
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactNode } from "react";
 
 interface IPanelError {
   message?: string;
+  children?: ReactNode;
 }
 
 export const ErrorState: FunctionComponent<IPanelError> = ({

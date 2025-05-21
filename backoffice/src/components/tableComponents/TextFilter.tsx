@@ -15,7 +15,7 @@ type ColumnDef<T extends Record<string, any>> = Column<T> & {
 export interface TextFilterProps<T extends Record<string, any>> {
   columnDef: Column<T>;
   onFilterChanged: (rowId: string, value: any) => void;
-  icons: Icons;
+  icons: Icons<any>;
   filterTooltip: string;
 }
 

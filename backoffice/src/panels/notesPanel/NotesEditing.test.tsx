@@ -10,15 +10,15 @@ describe("NotesEditing", () => {
     const incidentNoteRadio = screen.getByTestId(/incident-note-type/i);
     const generalNoteRadio = screen.getByTestId(/general-note-type/i);
 
-    userEvent.click(incidentNoteRadio);
-    userEvent.click(generalNoteRadio);
+    await userEvent.click(incidentNoteRadio);
+    await userEvent.click(generalNoteRadio);
   });
 
   it("user can type a note into text field", async () => {
     render(<NotesEditing onSave={jest.fn()} onCancel={jest.fn()} />);
 
     const noteInputField = screen.getByPlaceholderText("Add a note here");
-    userEvent.type(noteInputField, "Here is a note");
+    await userEvent.type(noteInputField, "Here is a note");
 
     expect(await screen.findByDisplayValue("Here is a note")).toBeVisible();
   });
@@ -29,8 +29,8 @@ describe("NotesEditing", () => {
 
     const generalNoteRadio = screen.getByTestId(/general-note-type/i);
     const noteInputField = screen.getByPlaceholderText("Add a note here");
-    userEvent.click(generalNoteRadio);
-    userEvent.type(noteInputField, "Here is a note");
+    await userEvent.click(generalNoteRadio);
+    await userEvent.type(noteInputField, "Here is a note");
 
     let saveButton = screen.getByTestId(/save/i);
     await waitFor(() => {
@@ -55,9 +55,9 @@ describe("NotesEditing", () => {
     const noteInputField = screen.getByPlaceholderText("Add a note here");
     const cancelButton = screen.getByRole("button", { name: "Cancel" });
 
-    userEvent.click(incidentNoteRadio);
-    userEvent.type(noteInputField, "Here is a note");
-    userEvent.click(cancelButton);
+    await userEvent.click(incidentNoteRadio);
+    await userEvent.type(noteInputField, "Here is a note");
+    await userEvent.click(cancelButton);
 
     await waitFor(() => {
       expect(onCancel).toHaveBeenCalled();
@@ -73,14 +73,14 @@ describe("NotesEditing", () => {
       expect(screen.getByTestId(/save/i)).toBeDisabled();
     });
 
-    userEvent.type(noteInputField, "Here is a note");
+    await userEvent.type(noteInputField, "Here is a note");
 
     await waitFor(() => {
       expect(screen.getByTestId(/save/i)).toBeDisabled();
     });
 
-    userEvent.clear(noteInputField);
-    userEvent.click(generalNoteRadio);
+    await userEvent.clear(noteInputField);
+    await userEvent.click(generalNoteRadio);
 
     await waitFor(() => {
       expect(screen.getByTestId(/save/i)).toBeDisabled();
