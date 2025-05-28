@@ -5,8 +5,10 @@ import userEvent from "@testing-library/user-event";
 import React, { forwardRef } from "react";
 import { TextFilter, TextFilterProps } from "./TextFilter";
 
-const tableIcons: Icons = {
-  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+const tableIcons: Icons<any> = {
+  Filter: forwardRef<SVGSVGElement, any>((props, ref) => (
+    <FilterList {...props} ref={ref} />
+  )),
 };
 
 type RenderTextFilterParams = Pick<
@@ -32,7 +34,7 @@ describe("TextFilter", () => {
   it("Should call onFilterChanged after blur", async () => {
     const columnDef = {
       tableData: {
-        id: "test id",
+        id: 123,
         filterValue: "",
       },
       title: "Test",
@@ -46,14 +48,14 @@ describe("TextFilter", () => {
     await userEvent.type(inputNode, "testing 123");
     inputNode.blur();
 
-    expect(onFilterChanged).toHaveBeenCalledWith("test id", "testing 123");
+    expect(onFilterChanged).toHaveBeenCalledWith(123, "testing 123");
     expect(onFilterChanged).toHaveBeenCalledTimes(1);
   });
 
   it("Should not call onFilterChanged if the value does not change", async () => {
     const columnDef = {
       tableData: {
-        id: "test id",
+        id: 123,
         filterValue: "Already filled",
       },
       title: "Test",
